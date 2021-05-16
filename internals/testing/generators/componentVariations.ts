@@ -16,7 +16,6 @@ export const componentVariations = (): ComponentVariationType => {
       path: ``,
       wantLoadable: values[0],
       wantMemo: values[1],
-      wantStyledComponents: values[2],
       wantTests: values[3],
       wantTranslations: values[4],
     });
@@ -35,7 +34,6 @@ export const componentVariations = (): ComponentVariationType => {
       path: `${path}`,
       wantLoadable: true,
       wantMemo: true,
-      wantStyledComponents: true,
       wantTests: true,
       wantTranslations: true,
     });

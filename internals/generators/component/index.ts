@@ -14,7 +14,6 @@ export enum ComponentProptNames {
   componentName = 'componentName',
   path = 'path',
   wantMemo = 'wantMemo',
-  wantStyledComponents = 'wantStyledComponents',
   wantTranslations = 'wantTranslations',
   wantLoadable = 'wantLoadable',
   wantTests = 'wantTests',
@@ -41,12 +40,6 @@ export const componentGenerator: PlopGeneratorConfig = {
       name: ComponentProptNames.wantMemo,
       default: false,
       message: 'Do you want to wrap your component in React.memo?',
-    },
-    {
-      type: 'confirm',
-      name: ComponentProptNames.wantStyledComponents,
-      default: true,
-      message: 'Do you want to use styled-components?',
     },
     {
       type: 'confirm',
