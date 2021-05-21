@@ -3,18 +3,15 @@
  * TodoList
  *
  */
-import React from 'react';
-// import { TodoInput } from '../TodoInput';
-// import { useTranslation } from 'react-i18next';
-// import { messages } from './messages';
+import * as React from 'react';
 
-interface Props {
-  todoItem: {
+export interface Props {
+  todoList: {
     name: string;
     key: number;
     isCompleted: boolean;
   }[];
-  setTodoItem: React.Dispatch<
+  setTodoList: React.Dispatch<
     React.SetStateAction<
       {
         name: string;
@@ -25,26 +22,21 @@ interface Props {
   >;
 }
 
-// export function TodoList(props: Props) {
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// const { t, i18n } = useTranslation();
-
-export const TodoList: React.FC<Props> = ({ todoItem, setTodoItem }) => {
-  // { value: 'demo2', isCompleted: false },
-
-  // const addTask = () => {
-  //   const newTask = { taskName: input };
-  //   setTodoList([...todoList, newTask]);
-  // };
+export const TodoList: React.FC<Props> = ({ todoList, setTodoList }) => {
+  const handleDelete = key => {
+    const deleteTask = todoList.filter(onDelete => onDelete.key !== key);
+    setTodoList(deleteTask);
+  };
 
   return (
     <>
-      {/* {todoList.map(newTodo => {
-        return <li key={newTodo.key}>{newTodo.name}</li>;
-      })} */}
-
-      {todoItem.map(newTodo => (
-        <li key={newTodo.key}>{newTodo.name}</li>
+      {todoList.map(newTodo => (
+        <>
+          <li key={newTodo.key}>
+            {newTodo.name}
+            <button onClick={() => handleDelete(newTodo.key)}>Delete</button>
+          </li>
+        </>
       ))}
     </>
   );

@@ -9,30 +9,10 @@ interface Props {
     key: number;
     isCompleted: boolean;
   }[];
-  setTodoItem: React.Dispatch<
-    React.SetStateAction<
-      {
-        name: string;
-        key: number;
-        isCompleted: boolean;
-      }[]
-    >
-  >;
 }
 
-export const HomePage: React.FC<Props> = () => {
-  const [todoList, setTodoList] = useState([
-    {
-      key: 1,
-      name: 'demo1',
-      isCompleted: false,
-    },
-    {
-      key: 2,
-      name: 'demo2',
-      isCompleted: false,
-    },
-  ]);
+export const HomePage: React.FC = () => {
+  const [todoList, setTodoList] = useState<Props['todoItem']>([]);
   return (
     <>
       <Helmet>
@@ -40,8 +20,8 @@ export const HomePage: React.FC<Props> = () => {
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
       <div>
-        <TodoInput />
-        <TodoList todoItem={todoList} setTodoItem={setTodoList} />
+        <TodoInput setTodoList={setTodoList} />
+        <TodoList todoList={todoList} setTodoList={setTodoList} />
       </div>
     </>
   );

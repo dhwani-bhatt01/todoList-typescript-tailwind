@@ -7,23 +7,39 @@ import React, { useState } from 'react';
 // import { useTranslation } from 'react-i18next';
 // import { messages } from './messages';
 
-interface Props {}
+// interface Props {
+//   setTodoItem: React.Dispatch<
+//     React.SetStateAction<
+//       {
+//         name: string;
+//         key: number;
+//         isCompleted: boolean;
+//       }[]
+//     >
+//   >;
+// }
 
-export function TodoInput(props: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const { t, i18n } = useTranslation();
-
+export const TodoInput = ({ setTodoList }) => {
   const [input, setInput] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInput((e.target.name = e.target.value));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e): void => {
     e.preventDefault();
-    // e.target.value = '';
     setInput('');
     console.log(input);
+    setTodoList(prevState => {
+      return [
+        ...prevState,
+        {
+          name: input,
+          isCompleted: false,
+          key: Math.random(),
+        },
+      ];
+    });
   };
 
   return (
@@ -33,10 +49,10 @@ export function TodoInput(props: Props) {
         type="text"
         value={input}
         placeholder="Enter you todos"
-        name="todo-input"
+        name="input"
         onChange={handleChange}
       />
       <button onClick={handleSubmit}>Add</button>
     </>
   );
-}
+};
